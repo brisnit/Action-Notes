@@ -178,13 +178,21 @@
         <div class="grid md:grid-cols-2 gap-6 mt-6">
           <div>
             <p class="label">Logo</p>
-            <div class="border-2 border-dashed border-mist rounded-xl p-6 text-center hover:border-indigo-brand transition cursor-pointer">
-              <div class="w-12 h-12 rounded-xl bg-cloud mx-auto flex items-center justify-center text-charcoal">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <input type="file" id="logo-input" accept="image/png,image/svg+xml,image/jpeg" class="hidden" />
+            <div id="logo-dropzone" class="border-2 border-dashed border-mist rounded-xl p-6 text-center hover:border-indigo-brand transition cursor-pointer">
+              <div id="logo-placeholder">
+                <div class="w-12 h-12 rounded-xl bg-cloud mx-auto flex items-center justify-center text-charcoal">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                </div>
+                <p class="font-medium text-charcoal mt-3">Drop your logo here</p>
+                <p class="text-xs text-gray-500 mt-1">PNG, JPG, or SVG — at least 200×200</p>
+                <span class="btn-secondary text-sm mt-4 inline-block">Or browse files</span>
               </div>
-              <p class="font-medium text-charcoal mt-3">Drop your logo here</p>
-              <p class="text-xs text-gray-500 mt-1">PNG or SVG, at least 200×200</p>
-              <button class="btn-secondary text-sm mt-4">Or browse files</button>
+              <div id="logo-preview" class="hidden">
+                <img id="logo-preview-img" class="w-20 h-20 rounded-xl object-contain mx-auto" alt="Logo preview" />
+                <p id="logo-filename" class="text-sm font-medium text-charcoal mt-3"></p>
+                <button type="button" id="logo-remove" class="text-xs text-coral hover:underline mt-1">Remove</button>
+              </div>
             </div>
           </div>
 
@@ -389,6 +397,65 @@
         s.classList.add('selected');
       });
     });
+
+    // Logo upload
+    (function () {
+      const input = document.getElementById('logo-input');
+      const dropzone = document.getElementById('logo-dropzone');
+      const placeholder = document.getElementById('logo-placeholder');
+      const preview = document.getElementById('logo-preview');
+      const previewImg = document.getElementById('logo-preview-img');
+      const filename = document.getElementById('logo-filename');
+      const removeBtn = document.getElementById('logo-remove');
+
+      function showPreview(file) {
+        if (!file || !file.type.startsWith('image/')) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImg.src = e.target.result;
+          filename.textContent = file.name;
+          placeholder.classList.add('hidden');
+          preview.classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function reset() {
+        input.value = '';
+        previewImg.src = '';
+        filename.textContent = '';
+        preview.classList.add('hidden');
+        placeholder.classList.remove('hidden');
+      }
+
+      dropzone.addEventListener('click', (e) => {
+        if (e.target.closest('#logo-remove')) return;
+        input.click();
+      });
+
+      input.addEventListener('change', () => {
+        if (input.files[0]) showPreview(input.files[0]);
+      });
+
+      dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('border-indigo-brand');
+      });
+      dropzone.addEventListener('dragleave', () => {
+        dropzone.classList.remove('border-indigo-brand');
+      });
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('border-indigo-brand');
+        const file = e.dataTransfer.files[0];
+        if (file) showPreview(file);
+      });
+
+      removeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        reset();
+      });
+    })();
   </script>
 </body>
 </html>
