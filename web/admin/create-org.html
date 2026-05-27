@@ -222,14 +222,21 @@
           <p class="label">Preview</p>
           <div class="phone-frame mx-auto">
             <div class="phone-screen">
-              <div class="brand-gradient h-24 p-4 text-white">
-                <p class="text-[10px] uppercase tracking-wider opacity-80">Cornerstone Community</p>
-                <p class="font-display text-xl">Sunday Series</p>
+              <div id="preview-header" class="h-24 p-4 text-white" style="background:linear-gradient(135deg,#5E6BF8,#22C2FA)">
+                <div class="flex items-center gap-2">
+                  <img id="preview-logo" class="w-6 h-6 rounded object-contain hidden" alt="" />
+                  <p id="preview-org-name" class="text-[10px] uppercase tracking-wider opacity-80">Cornerstone Community</p>
+                </div>
+                <p class="font-display text-xl mt-1">Sunday Series</p>
               </div>
               <div class="p-4 space-y-2">
                 <div class="rounded-xl border border-mist p-3">
                   <p class="text-[11px] text-gray-500">This week</p>
                   <p class="font-display text-base text-navy">Practicing Patience</p>
+                </div>
+                <div id="preview-action" class="rounded-xl p-3 text-white" style="background:#5E6BF8">
+                  <p class="text-[11px] opacity-80">Your streak</p>
+                  <p class="font-display text-lg">11 days</p>
                 </div>
                 <div class="rounded-xl border border-mist p-3">
                   <p class="text-[11px] text-gray-500">Reflection</p>
@@ -398,6 +405,50 @@
       });
     });
 
+    // Live preview updates
+    (function () {
+      const previewHeader = document.getElementById('preview-header');
+      const previewAction = document.getElementById('preview-action');
+      const previewLogo = document.getElementById('preview-logo');
+      const previewOrgName = document.getElementById('preview-org-name');
+      const orgNameInput = document.getElementById('orgname');
+      const customColorInput = document.getElementById('custom-color');
+
+      function updateColor(hex) {
+        previewHeader.style.background = hex;
+        previewAction.style.background = hex;
+        customColorInput.value = hex;
+      }
+
+      document.querySelectorAll('.color-swatch').forEach(s => {
+        s.addEventListener('click', () => updateColor(s.style.background));
+      });
+
+      customColorInput.addEventListener('input', () => {
+        const val = customColorInput.value;
+        if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+          document.querySelectorAll('.color-swatch').forEach(e => e.classList.remove('selected'));
+          updateColor(val);
+        }
+      });
+
+      if (orgNameInput) {
+        orgNameInput.addEventListener('input', () => {
+          previewOrgName.textContent = orgNameInput.value || 'Your Organization';
+        });
+      }
+
+      window._updatePreviewLogo = function (src) {
+        if (src) {
+          previewLogo.src = src;
+          previewLogo.classList.remove('hidden');
+        } else {
+          previewLogo.src = '';
+          previewLogo.classList.add('hidden');
+        }
+      };
+    })();
+
     // Logo upload
     (function () {
       const input = document.getElementById('logo-input');
@@ -416,6 +467,7 @@
           filename.textContent = file.name;
           placeholder.classList.add('hidden');
           preview.classList.remove('hidden');
+          if (window._updatePreviewLogo) window._updatePreviewLogo(e.target.result);
         };
         reader.readAsDataURL(file);
       }
@@ -426,6 +478,7 @@
         filename.textContent = '';
         preview.classList.add('hidden');
         placeholder.classList.remove('hidden');
+        if (window._updatePreviewLogo) window._updatePreviewLogo(null);
       }
 
       dropzone.addEventListener('click', (e) => {
