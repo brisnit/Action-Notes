@@ -45,28 +45,42 @@
       }
     }
 
+    function showError(msg) {
+      const el = document.getElementById('error-msg');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+      document.getElementById('spinner').classList.add('hidden');
+      document.querySelector('.font-display').textContent = 'Sign in failed';
+      document.querySelector('.text-gray-600').innerHTML =
+        '<a href="choose.html" class="text-indigo-brand underline">Go back and try again</a>';
+    }
+
     try {
+      let callbackHandled = false;
+
       const authkit = await createClient(CLIENT_ID, {
         redirectUri,
-        onRedirectCallback: () => {
+        onRedirectCallback: ({ user }) => {
+          callbackHandled = true;
           const role = sessionStorage.getItem('an_auth_role') || 'participant';
           redirect(role);
         },
       });
 
+      if (callbackHandled) return;
+
       const user = authkit.getUser();
       if (user) {
         const role = sessionStorage.getItem('an_auth_role') || 'participant';
         redirect(role);
-      } else if (!window.location.search.includes('code=')) {
+      } else if (window.location.search.includes('code=')) {
+        showError('Could not complete sign in. The authorization code may have expired.');
+      } else {
         window.location.replace('choose.html');
       }
     } catch (error) {
       console.error('Authentication error:', error);
-      const el = document.getElementById('error-msg');
-      el.textContent = 'Something went wrong. Redirecting…';
-      el.classList.remove('hidden');
-      setTimeout(() => window.location.replace('choose.html'), 2000);
+      showError(error.message || 'Something went wrong during sign in.');
     }
   </script>
 </body>
