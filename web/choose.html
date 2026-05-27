@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Continue as — Action Notes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { indigo: { brand: '#5E6BF8' }, cyan: { brand: '#22C2FA' }, navy:'#111827', slate:'#161B2E', cloud:'#F6F6FC', charcoal:'#1F2937', mist:'#E5EAF3', mint:'#34D399' },
+      fontFamily: { display: ['"Jockey One"','Inter','sans-serif'], sans: ['Inter','system-ui','sans-serif'] }
+    }}}
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="hero-glow min-h-screen flex flex-col">
+
+  <header class="max-w-7xl w-full mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <img src="assets/images/logo.png" alt="Action Notes" class="logo-img" />
+    </a>
+    <a href="index.html" class="btn-ghost">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to homepage
+    </a>
+  </header>
+
+  <main class="flex-1 flex items-center">
+    <div class="max-w-5xl w-full mx-auto px-6 py-16">
+      <div class="text-center max-w-2xl mx-auto fade-in">
+        <span class="chip-gradient">Welcome</span>
+        <h1 class="font-display text-4xl md:text-6xl text-navy mt-4 leading-tight">Continue as</h1>
+        <p class="mt-4 text-gray-600 text-lg">Tell us how you'll be using Action Notes — we'll take you to the right place.</p>
+      </div>
+
+      <div class="mt-12 grid md:grid-cols-2 gap-6">
+        <!-- Participant card -->
+        <div class="card card-hover fade-in flex flex-col">
+          <div class="flex items-start justify-between">
+            <div class="w-14 h-14 rounded-2xl brand-gradient flex items-center justify-center text-white">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="chip">Participant</span>
+          </div>
+          <h2 class="font-display text-2xl text-navy mt-6">I'm joining a community</h2>
+          <p class="text-gray-600 mt-2">For people joining an organization, learning community, class, church, podcast, or live event.</p>
+
+          <ul class="mt-5 space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-brand"></span> Access lessons and reflections</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-brand"></span> Track your growth and streaks</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-brand"></span> Join community conversations</li>
+          </ul>
+
+          <div class="mt-auto pt-6 flex flex-wrap gap-2">
+            <a href="participant/signup.html" class="btn-primary">Join Your Community
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="participant/login.html" class="btn-secondary">Sign In</a>
+          </div>
+        </div>
+
+        <!-- Admin card -->
+        <div class="card card-hover fade-in flex flex-col">
+          <div class="flex items-start justify-between">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-white" style="background:linear-gradient(135deg,#111827,#161B2E)">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M16 3l2 2-2 2"/></svg>
+            </div>
+            <span class="chip">Organization Admin</span>
+          </div>
+          <h2 class="font-display text-2xl text-navy mt-6">I'm running a community</h2>
+          <p class="text-gray-600 mt-2">For organizations, teachers, pastors, coaches, speakers, schools, and teams.</p>
+
+          <ul class="mt-5 space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-navy"></span> Build interactive content</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-navy"></span> Manage participants and groups</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-navy"></span> Track engagement and growth</li>
+          </ul>
+
+          <div class="mt-auto pt-6 flex flex-wrap gap-2">
+            <a href="admin/create-org.html" class="btn-primary">Launch Your Organization
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="admin/login.html" class="btn-secondary">Sign In</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center text-sm text-gray-500 mt-10">
+        Not sure which one? <a href="index.html#how" class="text-indigo-brand font-medium hover:underline">See how it works →</a>
+      </p>
+    </div>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

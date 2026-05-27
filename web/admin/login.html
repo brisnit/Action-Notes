@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin sign in — Action Notes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { indigo: { brand: '#5E6BF8' }, cyan: { brand: '#22C2FA' }, navy:'#111827', slate:'#161B2E', cloud:'#F6F6FC', charcoal:'#1F2937', mist:'#E5EAF3', mint:'#34D399' },
+      fontFamily: { display: ['"Jockey One"','Inter','sans-serif'], sans: ['Inter','system-ui','sans-serif'] }
+    }}}
+  </script>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body class="min-h-screen bg-white">
+
+  <div class="min-h-screen grid lg:grid-cols-2">
+    <div class="flex flex-col px-6 py-8 lg:px-16">
+      <header class="flex items-center justify-between">
+        <a href="../index.html" class="flex items-center gap-2">
+          <img src="../assets/images/logo.png" alt="Action Notes" class="logo-img" />
+        </a>
+        <a href="../choose.html" class="btn-ghost text-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Change role
+        </a>
+      </header>
+
+      <main class="flex-1 flex items-center justify-center py-12">
+        <div class="w-full max-w-md fade-in">
+          <span class="chip">Organization Admin</span>
+          <h1 class="font-display text-4xl text-navy mt-4">Sign in to your organization.</h1>
+          <p class="mt-2 text-gray-600">Manage your community, content, and engagement.</p>
+
+          <div class="mt-8 space-y-4">
+            <button id="btn-sign-in" class="btn-primary w-full">Sign in
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+            <p class="text-sm text-gray-500 text-center">You'll be redirected to sign in securely.</p>
+          </div>
+
+          <div class="divider-text">or continue with</div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <button id="btn-google" class="btn-social">
+              <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.26 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC04" d="M5.84 14.09a6.55 6.55 0 0 1 0-4.18V7.07H2.18a11 11 0 0 0 0 9.86z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+              Google
+            </button>
+            <button id="btn-microsoft" class="btn-social">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" fill="#F35326"/><rect x="14" y="3" width="7" height="7" fill="#81BC06"/><rect x="3" y="14" width="7" height="7" fill="#05A6F0"/><rect x="14" y="14" width="7" height="7" fill="#FFBA08"/></svg>
+              Microsoft
+            </button>
+          </div>
+
+          <script type="module">
+            import { signIn } from '../assets/js/auth.js';
+            ['btn-sign-in', 'btn-google', 'btn-microsoft'].forEach(id => {
+              document.getElementById(id).addEventListener('click', () => signIn('admin'));
+            });
+          </script>
+
+          <p class="mt-8 text-sm text-gray-600 text-center">
+            New here?
+            <a href="signup.html" class="text-indigo-brand font-semibold hover:underline">Create an account</a>
+            ·
+            <a href="create-org.html" class="text-indigo-brand font-semibold hover:underline">Create organization</a>
+          </p>
+        </div>
+      </main>
+
+      <footer class="text-xs text-gray-500 flex items-center justify-between">
+        <p>© <span data-year></span> Action Notes</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-charcoal">Privacy</a>
+          <a href="#" class="hover:text-charcoal">Terms</a>
+          <a href="#" class="hover:text-charcoal">Help</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Right brand panel: admin-themed (darker, dashboardy) -->
+    <aside class="hidden lg:flex relative overflow-hidden text-white items-center justify-center p-12" style="background:linear-gradient(135deg,#111827,#161B2E)">
+      <div class="absolute inset-0 opacity-30">
+        <div class="absolute -top-20 -left-20 w-96 h-96 rounded-full blur-3xl" style="background:#5E6BF8"></div>
+        <div class="absolute -bottom-32 -right-20 w-96 h-96 rounded-full blur-3xl" style="background:#22C2FA"></div>
+      </div>
+      <div class="relative max-w-md">
+        <span class="chip" style="background:rgba(255,255,255,0.1); color:white; border-color:rgba(255,255,255,0.15)">Your dashboard</span>
+        <h2 class="font-display text-4xl xl:text-5xl leading-tight mt-6">See your whole community at a glance.</h2>
+        <p class="mt-4 text-white/70">Who's engaging, who needs a nudge, and what's resonating — all in one calm view.</p>
+
+        <div class="mt-10 rounded-2xl p-5" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1)">
+          <div class="flex items-center justify-between">
+            <p class="text-sm text-white/70">This week</p>
+            <span class="chip" style="background:rgba(52,211,153,0.15); color:#34D399; border-color:rgba(52,211,153,0.25)">▲ 38%</span>
+          </div>
+          <p class="font-display text-3xl mt-1">4,612 reflections</p>
+          <svg viewBox="0 0 320 80" class="w-full mt-3">
+            <defs>
+              <linearGradient id="ag" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#22C2FA" stop-opacity="0.4"/>
+                <stop offset="1" stop-color="#5E6BF8" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,60 C40,40 70,55 110,30 C150,15 190,40 230,20 C260,5 290,30 320,15 L320,80 L0,80 Z" fill="url(#ag)"/>
+            <path d="M0,60 C40,40 70,55 110,30 C150,15 190,40 230,20 C260,5 290,30 320,15" stroke="#22C2FA" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

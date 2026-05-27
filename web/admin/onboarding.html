@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome to Action Notes — Cornerstone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { indigo: { brand: '#5E6BF8' }, cyan: { brand: '#22C2FA' }, navy:'#111827', slate:'#161B2E', cloud:'#F6F6FC', charcoal:'#1F2937', mist:'#E5EAF3', mint:'#34D399' },
+      fontFamily: { display: ['"Jockey One"','Inter','sans-serif'], sans: ['Inter','system-ui','sans-serif'] }
+    }}}
+  </script>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body class="bg-cloud min-h-screen">
+
+  <!-- App shell: sidebar + main -->
+  <div class="min-h-screen grid lg:grid-cols-[260px_1fr]">
+
+    <!-- Sidebar -->
+    <aside class="bg-white border-r border-mist p-5 hidden lg:flex flex-col">
+      <div class="flex items-center gap-2 mb-8">
+        <img src="../assets/images/logo.png" alt="Action Notes" class="logo-img" />
+      </div>
+
+      <div class="rounded-2xl p-3 brand-gradient text-white mb-6 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center font-display">CC</div>
+        <div>
+          <p class="font-display text-sm leading-tight">Cornerstone Community</p>
+          <p class="text-[10px] opacity-80">Admin · Free trial</p>
+        </div>
+      </div>
+
+      <nav class="flex-1 space-y-1 text-sm">
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-cloud text-navy font-medium">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-500 hover:bg-cloud hover:text-navy">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h16"/></svg>
+          Content library
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-500 hover:bg-cloud hover:text-navy">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Participants
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-500 hover:bg-cloud hover:text-navy">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+          Engagement
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-500 hover:bg-cloud hover:text-navy">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Discussions
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-500 hover:bg-cloud hover:text-navy">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Settings
+        </a>
+      </nav>
+
+      <div class="mt-6 pt-5 border-t border-mist">
+        <div class="flex items-center gap-3">
+          <div class="avatar bg-cloud text-charcoal">RB</div>
+          <div class="text-sm">
+            <p class="font-medium text-charcoal leading-tight">Rachel Bennett</p>
+            <p class="text-xs text-gray-500">rachel@cornerstone.org</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="p-6 lg:p-10">
+      <header class="flex items-center justify-between mb-8">
+        <div>
+          <p class="text-xs text-gray-500">Welcome aboard</p>
+          <h1 class="font-display text-3xl text-navy">Let's get Cornerstone moving.</h1>
+        </div>
+        <button class="btn-secondary text-sm">Skip tour</button>
+      </header>
+
+      <!-- Progress -->
+      <div class="card mb-6 fade-in">
+        <div class="flex items-center justify-between mb-3">
+          <p class="font-display text-lg text-navy">Your first‑week checklist</p>
+          <p class="text-sm text-gray-500"><span class="font-semibold text-navy">1</span> of 5 complete</p>
+        </div>
+        <div class="h-2 bg-cloud rounded-full overflow-hidden">
+          <div class="h-full brand-gradient" style="width:20%"></div>
+        </div>
+      </div>
+
+      <!-- Action grid -->
+      <div class="grid lg:grid-cols-3 gap-5">
+
+        <!-- Completed -->
+        <div class="card fade-in opacity-75">
+          <div class="flex items-start justify-between">
+            <div class="w-11 h-11 rounded-xl bg-mint/15 text-mint flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <span class="chip" style="background:rgba(52,211,153,0.1); color:#059669; border-color:rgba(52,211,153,0.2)">Done</span>
+          </div>
+          <h3 class="font-display text-xl text-navy mt-4 line-through decoration-mint/60">Create your organization</h3>
+          <p class="text-sm text-gray-600 mt-1">Cornerstone Community is live.</p>
+        </div>
+
+        <!-- Pending: create first lesson -->
+        <div class="card card-hover fade-in">
+          <div class="flex items-start justify-between">
+            <div class="w-11 h-11 rounded-xl brand-gradient flex items-center justify-center text-white">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+            </div>
+            <span class="chip-gradient">Up next</span>
+          </div>
+          <h3 class="font-display text-xl text-navy mt-4">Create your first lesson</h3>
+          <p class="text-sm text-gray-600 mt-1">Upload audio or video, add a reflection, and publish. Takes about 5 minutes.</p>
+          <button class="btn-primary mt-5 text-sm">Start now
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- Pending: invite participants -->
+        <div class="card card-hover fade-in">
+          <div class="flex items-start justify-between">
+            <div class="w-11 h-11 rounded-xl brand-gradient flex items-center justify-center text-white">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+          </div>
+          <h3 class="font-display text-xl text-navy mt-4">Invite participants</h3>
+          <p class="text-sm text-gray-600 mt-1">Share your invite link or code, or import an email list.</p>
+          <button class="btn-secondary mt-5 text-sm">Open invite tools</button>
+        </div>
+
+        <!-- Pending: brand polish -->
+        <div class="card card-hover fade-in">
+          <div class="flex items-start justify-between">
+            <div class="w-11 h-11 rounded-xl brand-gradient flex items-center justify-center text-white">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+          </div>
+          <h3 class="font-display text-xl text-navy mt-4">Connect your domain</h3>
+          <p class="text-sm text-gray-600 mt-1">Move from actionnotes.app to learn.cornerstone.org in minutes.</p>
+          <button class="btn-secondary mt-5 text-sm">Set up domain</button>
+        </div>
+
+        <!-- Pending: invite team -->
+        <div class="card card-hover fade-in">
+          <div class="flex items-start justify-between">
+            <div class="w-11 h-11 rounded-xl brand-gradient flex items-center justify-center text-white">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+          </div>
+          <h3 class="font-display text-xl text-navy mt-4">Invite your team</h3>
+          <p class="text-sm text-gray-600 mt-1">Add editors, moderators, and analysts so you don't run it alone.</p>
+          <button class="btn-secondary mt-5 text-sm">Invite teammates</button>
+        </div>
+
+        <!-- Pending: take tour -->
+        <div class="card card-hover fade-in">
+          <div class="flex items-start justify-between">
+            <div class="w-11 h-11 rounded-xl brand-gradient flex items-center justify-center text-white">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+          </div>
+          <h3 class="font-display text-xl text-navy mt-4">Take the dashboard tour</h3>
+          <p class="text-sm text-gray-600 mt-1">2‑minute walkthrough of content, participants, and analytics.</p>
+          <button class="btn-secondary mt-5 text-sm">Start tour</button>
+        </div>
+      </div>
+
+      <!-- Quick stats / suggested next move -->
+      <section class="mt-10 grid md:grid-cols-3 gap-5">
+        <div class="card">
+          <p class="text-xs uppercase tracking-wider text-gray-500">Participants</p>
+          <p class="font-display text-3xl text-navy mt-1">0</p>
+          <p class="text-xs text-gray-500 mt-1">Invite a few and watch this grow.</p>
+        </div>
+        <div class="card">
+          <p class="text-xs uppercase tracking-wider text-gray-500">Lessons published</p>
+          <p class="font-display text-3xl text-navy mt-1">0</p>
+          <p class="text-xs text-gray-500 mt-1">Your first one is one click away.</p>
+        </div>
+        <div class="card">
+          <p class="text-xs uppercase tracking-wider text-gray-500">Engagement</p>
+          <p class="font-display text-3xl text-navy mt-1">—</p>
+          <p class="text-xs text-gray-500 mt-1">Charts unlock when participants engage.</p>
+        </div>
+      </section>
+
+      <!-- Resource block -->
+      <section class="mt-10 card brand-gradient text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-30" style="background: radial-gradient(60% 60% at 80% 20%, rgba(255,255,255,0.5), transparent 60%)"></div>
+        <div class="relative grid md:grid-cols-[1fr_auto] gap-6 items-center">
+          <div>
+            <p class="text-xs uppercase tracking-wider opacity-80">Welcome guide</p>
+            <h3 class="font-display text-2xl mt-1">The first 7 days that change everything</h3>
+            <p class="text-white/85 mt-2 max-w-xl">A short guide for new admins. What to publish first, how to invite well, and the tiny habits that make communities stick.</p>
+          </div>
+          <a href="#" class="btn-primary" style="background:white; color:#111827; border-color:white">Open guide
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

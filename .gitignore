@@ -1,0 +1,6 @@
+.DS_Store
+.env
+credentials.json
+token.json
+.tmp/
+.claude/settings.local.json

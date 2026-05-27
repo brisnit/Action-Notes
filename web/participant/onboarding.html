@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome — Action Notes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { indigo: { brand: '#5E6BF8' }, cyan: { brand: '#22C2FA' }, navy:'#111827', slate:'#161B2E', cloud:'#F6F6FC', charcoal:'#1F2937', mist:'#E5EAF3', mint:'#34D399' },
+      fontFamily: { display: ['"Jockey One"','Inter','sans-serif'], sans: ['Inter','system-ui','sans-serif'] }
+    }}}
+  </script>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <style>
+    .chip-select { cursor: pointer; transition: all 150ms ease; }
+    .chip-active { background: linear-gradient(135deg, rgba(94, 107, 248, 0.15), rgba(34, 194, 250, 0.15)); border-color: #5E6BF8; color: #5E6BF8; }
+  </style>
+</head>
+<body class="hero-glow min-h-screen flex flex-col">
+
+  <header class="max-w-7xl w-full mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-2">
+      <img src="../assets/images/logo.png" alt="Action Notes" class="logo-img" />
+    </a>
+    <p class="text-xs text-gray-500">Setting up your experience</p>
+  </header>
+
+  <main class="flex-1 flex items-center justify-center px-6 py-12">
+    <div class="w-full max-w-xl" data-multistep>
+
+      <!-- Step indicators -->
+      <div class="flex items-center justify-between mb-8">
+        <div class="step" data-step-indicator>
+          <span class="step-dot">1</span><span class="hidden sm:inline">Welcome</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step-indicator>
+          <span class="step-dot">2</span><span class="hidden sm:inline">Profile</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step-indicator>
+          <span class="step-dot">3</span><span class="hidden sm:inline">Interests</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step-indicator>
+          <span class="step-dot">4</span><span class="hidden sm:inline">Notifications</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step-indicator>
+          <span class="step-dot">✓</span><span class="hidden sm:inline">Ready</span>
+        </div>
+      </div>
+
+      <div class="h-1.5 w-full bg-mist rounded-full overflow-hidden mb-8">
+        <div data-progress-bar class="h-full brand-gradient transition-all duration-500" style="width:20%"></div>
+      </div>
+
+      <!-- STEP 1: Welcome -->
+      <section data-step class="card fade-in">
+        <div class="w-16 h-16 rounded-2xl brand-gradient flex items-center justify-center text-white mb-5">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h1 class="font-display text-4xl text-navy">Welcome, Anna.</h1>
+        <p class="mt-3 text-gray-600 text-lg">You've joined <strong class="text-charcoal">Cornerstone Community Church</strong>. Let's set you up in about 60 seconds.</p>
+        <div class="mt-6 rounded-xl bg-cloud p-4 flex items-start gap-3">
+          <span class="pulse-dot mt-1.5"></span>
+          <p class="text-sm text-gray-600">Your community is in the middle of a series called <strong class="text-charcoal">Practicing Patience</strong>. Your first lesson will be ready when you finish setup.</p>
+        </div>
+        <button data-next class="btn-primary mt-6">Let's go
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </section>
+
+      <!-- STEP 2: Profile -->
+      <section data-step class="card fade-in">
+        <h1 class="font-display text-3xl text-navy">A few details</h1>
+        <p class="mt-2 text-gray-600">Your community uses these to help you connect.</p>
+
+        <div class="mt-6 flex items-center gap-4">
+          <div class="w-20 h-20 rounded-full brand-gradient flex items-center justify-center text-white font-display text-2xl">AS</div>
+          <div>
+            <button class="btn-secondary text-sm">Upload photo</button>
+            <p class="text-xs text-gray-500 mt-2">PNG or JPG, up to 4MB.</p>
+          </div>
+        </div>
+
+        <div class="mt-6 space-y-4">
+          <div>
+            <label class="label" for="display">Display name</label>
+            <input id="display" class="input" value="Anna Sato" />
+          </div>
+          <div>
+            <label class="label" for="bio">A line about you (optional)</label>
+            <input id="bio" class="input" placeholder="e.g. New here, parent of two, trying to slow down." />
+          </div>
+        </div>
+
+        <div class="flex justify-between mt-6">
+          <button data-prev class="btn-secondary">Back</button>
+          <button data-next class="btn-primary">Continue
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- STEP 3: Interests -->
+      <section data-step class="card fade-in">
+        <h1 class="font-display text-3xl text-navy">What are you here to grow in?</h1>
+        <p class="mt-2 text-gray-600">Pick a few. We'll surface the right content first.</p>
+
+        <div class="mt-6 flex flex-wrap gap-2" data-chip-select>
+          <button data-chip class="chip chip-select">Patience</button>
+          <button data-chip class="chip chip-select">Forgiveness</button>
+          <button data-chip class="chip chip-select">Daily habits</button>
+          <button data-chip class="chip chip-select">Mindfulness</button>
+          <button data-chip class="chip chip-select">Parenting</button>
+          <button data-chip class="chip chip-select">Leadership</button>
+          <button data-chip class="chip chip-select">Faith</button>
+          <button data-chip class="chip chip-select">Relationships</button>
+          <button data-chip class="chip chip-select">Career</button>
+          <button data-chip class="chip chip-select">Health</button>
+          <button data-chip class="chip chip-select">Creativity</button>
+          <button data-chip class="chip chip-select">Grief</button>
+        </div>
+
+        <div class="flex justify-between mt-8">
+          <button data-prev class="btn-secondary">Back</button>
+          <button data-next class="btn-primary">Continue
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- STEP 4: Notifications -->
+      <section data-step class="card fade-in">
+        <h1 class="font-display text-3xl text-navy">How should we nudge you?</h1>
+        <p class="mt-2 text-gray-600">Gentle reminders help. You can change these any time.</p>
+
+        <div class="mt-6 space-y-3">
+          <label class="flex items-center justify-between p-4 rounded-xl border border-mist hover:border-indigo-brand transition cursor-pointer">
+            <div>
+              <p class="font-medium">Daily reflection at 7:00am</p>
+              <p class="text-xs text-gray-500">A 5‑minute prompt to start your day.</p>
+            </div>
+            <input type="checkbox" checked class="w-5 h-5 rounded text-indigo-brand focus:ring-indigo-brand" />
+          </label>
+          <label class="flex items-center justify-between p-4 rounded-xl border border-mist hover:border-indigo-brand transition cursor-pointer">
+            <div>
+              <p class="font-medium">New lessons from Cornerstone</p>
+              <p class="text-xs text-gray-500">When your community publishes something new.</p>
+            </div>
+            <input type="checkbox" checked class="w-5 h-5 rounded text-indigo-brand focus:ring-indigo-brand" />
+          </label>
+          <label class="flex items-center justify-between p-4 rounded-xl border border-mist hover:border-indigo-brand transition cursor-pointer">
+            <div>
+              <p class="font-medium">Weekly progress recap</p>
+              <p class="text-xs text-gray-500">Sunday afternoons. See how your week went.</p>
+            </div>
+            <input type="checkbox" class="w-5 h-5 rounded text-indigo-brand focus:ring-indigo-brand" />
+          </label>
+          <label class="flex items-center justify-between p-4 rounded-xl border border-mist hover:border-indigo-brand transition cursor-pointer">
+            <div>
+              <p class="font-medium">Discussion replies</p>
+              <p class="text-xs text-gray-500">When someone replies in your group conversations.</p>
+            </div>
+            <input type="checkbox" checked class="w-5 h-5 rounded text-indigo-brand focus:ring-indigo-brand" />
+          </label>
+        </div>
+
+        <div class="flex justify-between mt-8">
+          <button data-prev class="btn-secondary">Back</button>
+          <button data-next class="btn-primary">Continue
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- STEP 5: Ready -->
+      <section data-step class="card fade-in text-center">
+        <div class="w-16 h-16 rounded-full bg-mint/15 mx-auto flex items-center justify-center text-mint">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h1 class="font-display text-4xl text-navy mt-5">You're in.</h1>
+        <p class="mt-3 text-gray-600 text-lg">Your first lesson with Cornerstone is ready whenever you are.</p>
+
+        <div class="mt-8 rounded-2xl text-left p-5 brand-gradient text-white">
+          <p class="text-xs uppercase tracking-wider opacity-80">Up first</p>
+          <p class="font-display text-2xl mt-1">Practicing Patience, Part 1</p>
+          <p class="text-sm opacity-80 mt-1">12 minutes • Audio + reflection</p>
+        </div>
+
+        <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="#" class="btn-primary">Start lesson
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#" class="btn-secondary">Take a tour first</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

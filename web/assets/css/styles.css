@@ -1,0 +1,403 @@
+/* Action Notes — Shared Brand Styles
+   Brand foundations live here. Page-level layout uses Tailwind utilities. */
+
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&family=Inter:wght@400,500,600,700&display=swap');
+
+:root {
+  --indigo: #5E6BF8;
+  --cyan: #22C2FA;
+  --navy: #111827;
+  --slate: #161B2E;
+  --cloud: #F6F6FC;
+  --charcoal: #1F2937;
+  --gray: #6B7280;
+  --mist: #E5EAF3;
+  --mint: #34D399;
+  --amber: #FBBF24;
+  --coral: #F87171;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--charcoal);
+  background: #ffffff;
+}
+
+.font-display {
+  font-family: 'Jockey One', 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Brand gradient — used in hero accents, icon tiles, illustrative chips */
+.brand-gradient {
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--cyan) 100%);
+}
+
+.brand-gradient-text {
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-gradient-soft {
+  background: linear-gradient(135deg, rgba(94, 107, 248, 0.08) 0%, rgba(34, 194, 250, 0.08) 100%);
+}
+
+.brand-gradient-border {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+}
+.brand-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--indigo), var(--cyan));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Hero glow background */
+.hero-glow {
+  background:
+    radial-gradient(60% 50% at 20% 20%, rgba(94, 107, 248, 0.18), transparent 60%),
+    radial-gradient(50% 50% at 85% 15%, rgba(34, 194, 250, 0.20), transparent 60%),
+    radial-gradient(40% 40% at 50% 90%, rgba(94, 107, 248, 0.12), transparent 60%),
+    #F6F6FC;
+}
+
+.aurora-bg {
+  background:
+    radial-gradient(40% 40% at 15% 30%, rgba(94, 107, 248, 0.10), transparent 60%),
+    radial-gradient(45% 40% at 85% 70%, rgba(34, 194, 250, 0.10), transparent 60%),
+    #FFFFFF;
+}
+
+/* Primary button — Midnight Navy fill, per brand guidelines */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--navy);
+  color: #ffffff;
+  font-family: 'Jockey One', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  padding: 0.875rem 1.5rem;
+  border-radius: 12px;
+  transition: transform 150ms ease, background 150ms ease, box-shadow 200ms ease;
+  border: 1px solid var(--navy);
+  box-shadow: 0 1px 2px rgba(17, 24, 39, 0.06);
+}
+.btn-primary:hover {
+  background: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(17, 24, 39, 0.18);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* Gradient primary — for marketing/hero moments */
+.btn-gradient {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--cyan) 100%);
+  color: #ffffff;
+  font-family: 'Jockey One', sans-serif;
+  font-size: 1rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 12px;
+  transition: transform 150ms ease, box-shadow 200ms ease, filter 200ms ease;
+  box-shadow: 0 6px 18px rgba(94, 107, 248, 0.32);
+}
+.btn-gradient:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 14px 28px rgba(94, 107, 248, 0.4);
+}
+
+/* Secondary / tertiary buttons */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  color: var(--navy);
+  font-family: 'Jockey One', sans-serif;
+  font-size: 1rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--mist);
+  transition: transform 150ms ease, border-color 150ms ease, box-shadow 200ms ease;
+}
+.btn-secondary:hover {
+  border-color: var(--indigo);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(94, 107, 248, 0.12);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--navy);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition: background 150ms ease, color 150ms ease;
+}
+.btn-ghost:hover { background: var(--cloud); color: var(--indigo); }
+
+/* Form inputs */
+.input {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--mist);
+  color: var(--charcoal);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+.input::placeholder { color: #9CA3AF; }
+.input:focus {
+  outline: none;
+  border-color: var(--indigo);
+  box-shadow: 0 0 0 4px rgba(94, 107, 248, 0.15);
+  background: #ffffff;
+}
+.input:disabled { background: var(--cloud); cursor: not-allowed; }
+
+.label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-bottom: 0.4rem;
+}
+
+/* Soft card */
+.card {
+  background: #ffffff;
+  border: 1px solid var(--mist);
+  border-radius: 20px;
+  padding: 1.75rem;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(94, 107, 248, 0.4);
+  box-shadow: 0 24px 48px -16px rgba(17, 24, 39, 0.16);
+}
+
+/* Subtle chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--cloud);
+  color: var(--charcoal);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--mist);
+}
+
+.chip-gradient {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, rgba(94, 107, 248, 0.12), rgba(34, 194, 250, 0.12));
+  color: var(--indigo);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(94, 107, 248, 0.2);
+}
+
+/* Floating pulse on the hero dot */
+.pulse-dot {
+  position: relative;
+  width: 8px; height: 8px;
+  border-radius: 999px;
+  background: var(--mint);
+}
+.pulse-dot::after {
+  content: '';
+  position: absolute; inset: -4px;
+  border-radius: 999px;
+  background: var(--mint);
+  opacity: 0.4;
+  animation: pulse 2s ease-out infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Fade-in on scroll */
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+.fade-in.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Phone mockup frame */
+.phone-frame {
+  width: 280px;
+  border-radius: 36px;
+  background: linear-gradient(180deg, #0b1020, #161B2E);
+  padding: 12px;
+  box-shadow: 0 40px 80px -24px rgba(17, 24, 39, 0.4),
+              0 0 0 1px rgba(255,255,255,0.04) inset;
+}
+.phone-screen {
+  background: #ffffff;
+  border-radius: 26px;
+  overflow: hidden;
+  height: 560px;
+  position: relative;
+}
+
+/* Admin browser mockup frame */
+.browser-frame {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid var(--mist);
+  box-shadow: 0 40px 80px -28px rgba(17, 24, 39, 0.25);
+  overflow: hidden;
+}
+.browser-bar {
+  display: flex; align-items: center; gap: 6px;
+  padding: 12px 16px;
+  background: var(--cloud);
+  border-bottom: 1px solid var(--mist);
+}
+.browser-bar span {
+  width: 10px; height: 10px; border-radius: 999px;
+  background: #d1d5db;
+}
+.browser-bar span:nth-child(1) { background: #FCA5A5; }
+.browser-bar span:nth-child(2) { background: #FCD34D; }
+.browser-bar span:nth-child(3) { background: #6EE7B7; }
+
+/* Logo lockup */
+.logo-img { height: 32px; width: auto; display: block; }
+
+/* Divider with text */
+.divider-text {
+  display: flex; align-items: center; gap: 12px;
+  color: var(--gray);
+  font-size: 0.8rem;
+  margin: 1.25rem 0;
+}
+.divider-text::before, .divider-text::after {
+  content: '';
+  flex: 1; height: 1px; background: var(--mist);
+}
+
+/* Social auth button */
+.btn-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: #ffffff;
+  border: 1px solid var(--mist);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--charcoal);
+  transition: border-color 150ms ease, background 150ms ease;
+  width: 100%;
+}
+.btn-social:hover { border-color: var(--indigo); background: var(--cloud); }
+
+/* Step indicator */
+.step {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: var(--gray);
+  font-weight: 500;
+}
+.step-dot {
+  width: 24px; height: 24px;
+  border-radius: 999px;
+  background: var(--mist);
+  color: var(--gray);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 600;
+}
+.step.active .step-dot {
+  background: var(--navy); color: white;
+}
+.step.complete .step-dot {
+  background: var(--mint); color: white;
+}
+.step.active { color: var(--navy); }
+
+/* Tiny dotted connector between steps */
+.step-line {
+  flex: 1; height: 1px;
+  background: repeating-linear-gradient(90deg, var(--mist) 0 6px, transparent 6px 12px);
+  margin: 0 0.5rem;
+}
+
+/* Avatar stack */
+.avatar {
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  background: var(--cloud);
+  border: 2px solid #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 600;
+  color: var(--charcoal);
+}
+
+/* Marquee for logos */
+.marquee {
+  display: flex; gap: 3rem;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Mobile nav */
+@media (max-width: 768px) {
+  .phone-frame { width: 240px; }
+  .phone-screen { height: 480px; }
+}
+
+/* Tap targets */
+button, a { -webkit-tap-highlight-color: transparent; }
