@@ -31,7 +31,11 @@
     import { createClient } from 'https://esm.sh/@workos-inc/authkit-js';
 
     const CLIENT_ID = 'client_01KSN963R31ANVT9FZCPY0G9N6';
-    const redirectUri = window.location.origin + window.location.pathname;
+    const PRODUCTION_ORIGIN = 'https://action-notes.vercel.app';
+    const origin = window.location.hostname === 'localhost'
+      ? window.location.origin
+      : PRODUCTION_ORIGIN;
+    const redirectUri = `${origin}/callback.html`;
 
     function redirect(role) {
       if (role === 'admin') {

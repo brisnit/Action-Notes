@@ -2,8 +2,13 @@ import { createClient } from 'https://esm.sh/@workos-inc/authkit-js';
 
 const CLIENT_ID = 'client_01KSN963R31ANVT9FZCPY0G9N6';
 
+const PRODUCTION_ORIGIN = 'https://action-notes.vercel.app';
+
 function getRedirectUri() {
-  return new URL('../../callback.html', import.meta.url).href;
+  const origin = window.location.hostname === 'localhost'
+    ? window.location.origin
+    : PRODUCTION_ORIGIN;
+  return `${origin}/callback.html`;
 }
 
 let _client = null;
