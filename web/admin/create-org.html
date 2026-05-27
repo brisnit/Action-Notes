@@ -328,19 +328,30 @@
         <p class="mt-2 text-gray-600">Share an invite link or a 6‑character code. Both work everywhere.</p>
 
         <div class="mt-6 space-y-4">
+          <!-- Invite link -->
           <div class="card brand-gradient text-white">
             <p class="text-xs uppercase tracking-wider opacity-80">Your invite link</p>
             <div class="flex items-center gap-2 mt-2">
-              <input readonly class="flex-1 bg-white/15 rounded-lg px-3 py-2 text-sm text-white placeholder-white/60 border border-white/20" value="https://app.actionnotes.app/join/cornerstone-community-church" />
-              <button class="rounded-lg bg-white text-navy text-sm font-medium px-3 py-2 hover:bg-cloud transition">Copy</button>
+              <div class="flex-1 flex items-stretch bg-white/15 rounded-lg border border-white/20 overflow-hidden">
+                <span class="px-3 flex items-center text-sm text-white/60 whitespace-nowrap">actionnotes.app/join/</span>
+                <input id="invite-slug" class="flex-1 min-w-0 bg-transparent px-0 py-2 text-sm text-white focus:outline-none" value="cornerstone-community-church" />
+              </div>
+              <button id="copy-link-btn" class="rounded-lg bg-white text-navy text-sm font-medium px-3 py-2 hover:bg-cloud transition whitespace-nowrap">Copy</button>
             </div>
-            <p class="text-xs opacity-80 mt-3">Anyone with this link can request to join. You can revoke or rotate it any time.</p>
+            <p id="copy-link-msg" class="text-xs opacity-80 mt-3">Anyone with this link can request to join. You can revoke or rotate it any time.</p>
           </div>
 
+          <!-- Invite code -->
           <div class="card">
-            <p class="text-xs uppercase tracking-wider text-gray-500">Or share this code</p>
-            <p class="font-display text-3xl text-navy mt-2 tracking-[0.3em]">CRN3F8</p>
-            <p class="text-xs text-gray-500 mt-2">Great for printed materials, in‑person events, or service slides.</p>
+            <div class="flex items-center justify-between">
+              <p class="text-xs uppercase tracking-wider text-gray-500">Or share this code</p>
+              <button id="regenerate-code" class="text-xs text-indigo-brand hover:underline font-medium">Generate new code</button>
+            </div>
+            <div class="flex items-center gap-3 mt-2">
+              <p id="invite-code" class="font-display text-3xl text-navy tracking-[0.3em]"></p>
+              <button id="copy-code-btn" class="btn-secondary text-sm py-1.5 px-3">Copy</button>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">Participants enter this code on the <strong>Join an organization</strong> page. Great for printed materials, in‑person events, or service slides.</p>
           </div>
 
           <label class="flex items-start gap-3 p-4 rounded-xl border border-mist hover:border-indigo-brand transition cursor-pointer">
@@ -511,6 +522,62 @@
       removeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         reset();
+      });
+    })();
+
+    // Invite link & code
+    (function () {
+      const inviteSlug = document.getElementById('invite-slug');
+      const copyLinkBtn = document.getElementById('copy-link-btn');
+      const copyLinkMsg = document.getElementById('copy-link-msg');
+      const inviteCode = document.getElementById('invite-code');
+      const copyCodeBtn = document.getElementById('copy-code-btn');
+      const regenBtn = document.getElementById('regenerate-code');
+      const orgSlugInput = document.getElementById('orgslug');
+
+      function getInviteUrl() {
+        return 'https://actionnotes.app/join/' + (inviteSlug.value || 'your-organization');
+      }
+
+      function generateCode() {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        let code = '';
+        for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+        return code;
+      }
+
+      function flashCopied(btn, original) {
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; }, 2000);
+      }
+
+      inviteCode.textContent = generateCode();
+
+      if (orgSlugInput) {
+        orgSlugInput.addEventListener('input', () => {
+          inviteSlug.value = orgSlugInput.value;
+        });
+      }
+
+      inviteSlug.addEventListener('input', () => {
+        const cleaned = inviteSlug.value.toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '');
+        inviteSlug.value = cleaned;
+      });
+
+      copyLinkBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(getInviteUrl()).then(() => {
+          flashCopied(copyLinkBtn, 'Copy');
+        });
+      });
+
+      copyCodeBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(inviteCode.textContent).then(() => {
+          flashCopied(copyCodeBtn, 'Copy');
+        });
+      });
+
+      regenBtn.addEventListener('click', () => {
+        inviteCode.textContent = generateCode();
       });
     })();
   </script>
