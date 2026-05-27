@@ -332,13 +332,14 @@
           <div class="card brand-gradient text-white">
             <p class="text-xs uppercase tracking-wider opacity-80">Your invite link</p>
             <div class="flex items-center gap-2 mt-2">
-              <div class="flex-1 flex items-stretch bg-white/15 rounded-lg border border-white/20 overflow-hidden">
-                <span class="px-3 flex items-center text-sm text-white/60 whitespace-nowrap">actionnotes.app/join/</span>
-                <input id="invite-slug" class="flex-1 min-w-0 bg-transparent px-0 py-2 text-sm text-white focus:outline-none" value="cornerstone-community-church" />
-              </div>
+              <input id="invite-url" readonly class="flex-1 bg-white/15 rounded-lg px-3 py-2 text-sm text-white border border-white/20 focus:outline-none cursor-text" value="https://actionnotes.app/join/cornerstone-community-church" />
               <button id="copy-link-btn" class="rounded-lg bg-white text-navy text-sm font-medium px-3 py-2 hover:bg-cloud transition whitespace-nowrap">Copy</button>
             </div>
-            <p id="copy-link-msg" class="text-xs opacity-80 mt-3">Anyone with this link can request to join. You can revoke or rotate it any time.</p>
+            <div class="flex items-center gap-2 mt-3">
+              <p class="text-xs opacity-80">Customize slug:</p>
+              <input id="invite-slug" class="bg-white/15 rounded-lg px-2 py-1 text-xs text-white border border-white/20 focus:outline-none w-48" value="cornerstone-community-church" />
+            </div>
+            <p id="copy-link-msg" class="text-xs opacity-80 mt-2">Anyone with this link can request to join. You can revoke or rotate it any time.</p>
           </div>
 
           <!-- Invite code -->
@@ -528,6 +529,7 @@
     // Invite link & code
     (function () {
       const inviteSlug = document.getElementById('invite-slug');
+      const inviteUrl = document.getElementById('invite-url');
       const copyLinkBtn = document.getElementById('copy-link-btn');
       const copyLinkMsg = document.getElementById('copy-link-msg');
       const inviteCode = document.getElementById('invite-code');
@@ -537,6 +539,10 @@
 
       function getInviteUrl() {
         return 'https://actionnotes.app/join/' + (inviteSlug.value || 'your-organization');
+      }
+
+      function syncUrl() {
+        inviteUrl.value = getInviteUrl();
       }
 
       function generateCode() {
@@ -556,12 +562,14 @@
       if (orgSlugInput) {
         orgSlugInput.addEventListener('input', () => {
           inviteSlug.value = orgSlugInput.value;
+          syncUrl();
         });
       }
 
       inviteSlug.addEventListener('input', () => {
         const cleaned = inviteSlug.value.toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '');
         inviteSlug.value = cleaned;
+        syncUrl();
       });
 
       copyLinkBtn.addEventListener('click', () => {
