@@ -222,12 +222,12 @@
           <p class="label">Preview</p>
           <div class="phone-frame mx-auto">
             <div class="phone-screen">
-              <div id="preview-header" class="h-24 p-4 text-white" style="background:linear-gradient(135deg,#5E6BF8,#22C2FA)">
-                <div class="flex items-center gap-2">
-                  <img id="preview-logo" class="w-6 h-6 rounded object-contain hidden" alt="" />
+              <div id="preview-header" class="h-24 p-4 text-white flex items-center justify-center" style="background:linear-gradient(135deg,#5E6BF8,#22C2FA)">
+                <img id="preview-logo" class="max-h-16 max-w-[80%] object-contain hidden" alt="" />
+                <div id="preview-text-block" class="w-full">
                   <p id="preview-org-name" class="text-[10px] uppercase tracking-wider opacity-80">Cornerstone Community</p>
+                  <p class="font-display text-xl mt-1">Sunday Series</p>
                 </div>
-                <p class="font-display text-xl mt-1">Sunday Series</p>
               </div>
               <div class="p-4 space-y-2">
                 <div class="rounded-xl border border-mist p-3">
@@ -438,13 +438,17 @@
         });
       }
 
+      const previewTextBlock = document.getElementById('preview-text-block');
+
       window._updatePreviewLogo = function (src) {
         if (src) {
           previewLogo.src = src;
           previewLogo.classList.remove('hidden');
+          previewTextBlock.classList.add('hidden');
         } else {
           previewLogo.src = '';
           previewLogo.classList.add('hidden');
+          previewTextBlock.classList.remove('hidden');
         }
       };
     })();
